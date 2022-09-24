@@ -1,5 +1,75 @@
-<!--
-    Replace this with your working code from Lab 2, and include:
-    - The styles in this folder's `style.css`
-    - The script in script.js, which should be included via a `<script src="script.js" >` call before your closing </body> tag 
--->
+<!DOCTYPE html>
+
+<html lang = 'en'>
+<head>
+    <meta charset='UTF-8'/>
+    <link  rel='stylesheet' href='/client/lab_3/style.css'>
+    <title>Zemen's Lab 2 For INST377</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <h1>Zemen's Lab 2 For INST377</h1>
+         </header>
+         
+         <div class="container">
+            <div class="left_section box">
+                <header>
+                    <h2>Album Names</h2>
+                <header>
+                    <ol class="box">
+                        <li>The Weeknd - House of ballons</li>
+                        <li>Teddy Afro - Tikur Sew</li>
+                        <li>Burna Boy - African Gaint</li>
+                        <li>The Weeknd - Starboy</li>
+                        <li>Eyob Mekonnen - Erotalw</li>
+                    </ol>
+            </div>
+
+            <div>
+                <div class="box right_section box">
+                    <h2>Image Carousel</h2>
+                    <div class="carousel">
+                        <a class="prev" onclick="plusSlides(-1)">Prev</a>
+
+                        <div class="carousel_item">
+                            
+                            <div class="slides">
+                                <img src="/client/lab_3/images/AfricanGiant.jpg">
+                            </div>
+
+                            <div class="slides">
+                                <img src="/client/lab_3/images/TeddyAfro.jpg">
+                            </div>
+
+                            <div class="slides">
+                                <img src="/client/lab_3/images/Starboy.jpg">
+                            </div>
+
+
+                        </div>
+                        
+                        <a class="next" onclick="plusSlides(1)">Next</a>
+                    </div>
+
+
+                    <div class="subtitle box">
+                        <p><strong>Description of the Images above.</strong></p>
+                        <p> Slide 1. Teddy Afro - Tikur Sew Album Cover<br>
+                            Slide 2. The Weeknd - Starboy Album Cover<br>
+                            Slide 3. Burna Boy - African Gaint Album Cover<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </div>
+
+    <footer class="footer">
+        <p>MY GITHUB ACCOUNT NAME <a href='https://www.github.com/zkebede'>Zemen</a>.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
