@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-
 <html lang = 'en'>
 <head>
     <meta charset='UTF-8'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link  rel='stylesheet' href='style.css'>
     <title>Zemen's Lab 2 For INST377</title>
 </head>
@@ -10,9 +10,8 @@
     <div class="wrapper">
         <header class="header">
             <h1>Zemen's Lab 2 For INST377</h1>
-         </header>
-         
-         <div class="container">
+        </header>
+        <div class="container">
             <div class="left_section box">
                 <header>
                     <h2>Album Names</h2>
@@ -26,40 +25,26 @@
                     </ol>
             </div>
 
-            <div>
-                <div class="box right_section box">
-                    <h2>Image Carousel</h2>
-                    <div class="carousel">
-                        <a class="prev" onclick="plusSlides(-1)">Prev</a>
-
-                        <div class="carousel_item">
-                            
-                            <div class="slides">
-                                <img src="/client/lab_3/images/TeddyAfro.jpg">
-                            </div>
-
-                            <div class="slides">
-                                <img src="/client/lab_3/images/Starboy.jpg">
-                            </div>
-
-                            <div class="slides">
-                                <img src="/client/lab_3/images/AfricanGiant.jpg">
-                            </div>
-                            
-                        </div>
-                        
-                        <a class="next" onclick="plusSlides(1)">Next</a>
+            <div class="right_section box">
+                <h2>Image Carousel</h2>
+                <div class = "carousel">
+                    <a class="next" onclick="plusSlides(1)">Perv</a>
+                    <div class="slides">
+                        <div class="carousel_item visible"><img id="slide_1" src="/client/lab_3/images/TeddyAfro.jpg" alt="Tikur Sew" /></div>
+                        <div class="carousel_item hidden"><img id="slide_2" src="/client/lab_3/images/AfricanGiant.jpg" alt="Starboy Album" /></div>
+                        <div class="carousel_item hidden"><img id="slide_3" src="/client/lab_3/images/Starboy.jpg" alt="African Gaint" /></div>
                     </div>
-
-
-                    <div class="subtitle box">
-                        <p><strong>Description of the Images above.</strong></p>
-                        <p> Slide 1. Teddy Afro - Tikur Sew Album Cover<br>
-                            Slide 2. The Weeknd - Starboy Album Cover<br>
-                            Slide 3. Burna Boy - African Gaint Album Cover<br>
-                        </p>
-                    </div>
+                    <a class="next" onclick="plusSlides(1)">Next</a>
                 </div>
+
+                <div class="box">
+                    <p><strong>Description of the Images above.</strong></p>
+                    <p> Slide 1. Teddy Afro - Tikur Sew Album Cover<br>
+                        Slide 2. The Weeknd - Starboy Album Cover<br>
+                        Slide 3. Burna Boy - African Gaint Album Cover<br>
+                    </p>
+                </div>
+
             </div>
          </div>
     </div>
@@ -67,8 +52,7 @@
     <footer class="footer">
         <p>MY GITHUB ACCOUNT NAME <a href='https://www.github.com/zkebede'>Zemen</a>.</p>
     </footer>
-
     <script src="script.js"></script>
+
 </body>
 </html>
-
