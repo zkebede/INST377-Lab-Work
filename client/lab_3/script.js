@@ -1,13 +1,12 @@
 /* eslint-disable max-len */
 /*
   Welcome to Javascript!
-
   This file contains parts of a simple script to make your carousel work.
   Please feel free to edit away - the main version of this with all the notes is safely stored elsewhere
 */
 /* eslint-enable max-len */
 // set our first slide's position to "0", the opening position in an array
-const slidePosition = 0;
+let slidePosition = 0;
 
 // gather a reference to every slide we're using via the class name and querySelectorAll
 const slides = document.querySelectorAll('.carousel_item');
@@ -41,6 +40,7 @@ function moveToNextSlide() {
     // eslint-disable-next-line no-const-assign
     slidePosition += 1;
   }
+
   updateSlidePosition(); // this is how you call a function within a function
 }
 function moveToPrevSlide() {
@@ -53,10 +53,8 @@ function moveToPrevSlide() {
   */
 
   if (slidePosition === totalSlides + 1) {
-    // eslint-disable-next-line no-const-assign
     slidePosition = 0;
   } else {
-    // eslint-disable-next-line no-const-assign
     slidePosition -= 1;
   }
   updateSlidePosition();
