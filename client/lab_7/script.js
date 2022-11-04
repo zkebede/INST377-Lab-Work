@@ -19,20 +19,18 @@ function getRandomIntInclusive(min, max) {
 }
 
 function injectHTML(list) {
-    console.log('fired injectHTML');
-    const target = document.querySelector('#restaurant_list');
-    target.innerHTML = '';
-  
-    const listEl = document.createElement('ol');
-    target.appendChild(listEl);
-  
-    list.forEach((item) => {
-      const el = document.createElement('li');
-      el.innerText = item.name;
-      listEl.appendChild(el);
-});
+  console.log('fired injectHTML');
+  const target = document.querySelector('#restaurant_list');
+  target.innerHTML = '';
 
-/*
+  const listEl = document.createElement('ol');
+  target.appendChild(listEl);
+  list.forEach((item) => {
+    const el = document.createElement('li');
+    el.innerText = item.name;
+    listEl.appendChild(el);
+  });
+  /*
   ## JS and HTML Injection
     There are a bunch of methods to inject text or HTML into a document using JS
     Mainly, they're considered "unsafe" because they can spoof a page pretty easily
@@ -40,30 +38,34 @@ function injectHTML(list) {
     the usual ones are element.innerText and element.innerHTML
     Here's an article on the differences if you want to know more:
     https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent#differences_from_innertext
+
   ## What to do in this function
     - Accept a list of restaurant objects
     - using a .forEach method, inject a list element into your index.html for every element in the list
     - Display the name of that restaurant and what category of food it is
 */
 }
+
 function processRestaurants(list) {
   console.log('fired restaurants list');
   const range = [...Array(15).keys()];
   const newArray = range.map((item) => {
     const index = getRandomIntInclusive(0, list.length);
     return list[index];
-  });
+  })
   return newArray;
-
   /*
     ## Process Data Separately From Injecting It
       This function should accept your 1,000 records
       then select 15 random records
       and return an object containing only the restaurant's name, category, and geocoded location
       So we can inject them using the HTML injection function
+
       You can find the column names by carefully looking at your single returned record
       https://data.princegeorgescountymd.gov/Health/Food-Inspection/umjn-t2iz
+
     ## What to do in this function:
+
     - Create an array of 15 empty elements (there are a lot of fun ways to do this, and also very basic ways)
     - using a .map function on that range,
     - Make a list of 15 random restaurants from your list of 100 from your data request
@@ -90,7 +92,7 @@ async function mainEvent() {
 
   // the async keyword means we can make API requests
   const form = document.querySelector('.main_form'); // get your main form so you can do JS with it
-  const submit = document.querySelector('#get-resto'); // get a reference to your submit button
+  const submit = document.querySelector('button[type="submit"]'); // get a reference to your submit button
   const loadAnimation = document.querySelector('.lds-ellipsis');
   submit.style.display = 'none'; // let your submit button disappear
 
@@ -103,14 +105,14 @@ async function mainEvent() {
   const arrayFromJson = await results.json(); // here is where we get the data from our request as JSON
 
   /*
-    Below this comment, we log out a table of all the results using "dot notation"
-    An alternate notation would be "bracket notation" - arrayFromJson["data"]
-    Dot notation is preferred in JS unless you have a good reason to use brackets
-    The 'data' key, which we set at line 38 in foodServiceRoutes.js, contains all 1,000 records we need
-  */
-    console.table(arrayFromJson.data);
+      Below this comment, we log out a table of all the results using "dot notation"
+      An alternate notation would be "bracket notation" - arrayFromJson["data"]
+      Dot notation is preferred in JS unless you have a good reason to use brackets
+      The 'data' key, which we set at line 38 in foodServiceRoutes.js, contains all 1,000 records we need
+    */
+  console.table(arrayFromJson.data);
 
-    // in your browser console, try expanding this object to see what fields are available to work with
+  // in your browser console, try expanding this object to see what fields are available to work with
   // for example: arrayFromJson.data[0].name, etc
   console.log(arrayFromJson.data[0]);
 
@@ -124,31 +126,33 @@ async function mainEvent() {
     loadAnimation.classList.add('lds-ellipsis_hidden');
 
     let currentList = [];
-    form.addEventListener('input', (event) => {
-        console.log(event.target.value);
-        const newFilterList = filterList(currentList, event.target.value);
-        // console.log(currentList);
-        // console.log(newFilterList);
-        injectHTML(newFilterList);
-      });
-  
-      // And here's an eventListener! It's listening for a "submit" button specifically being clicked
-      // this is a synchronous event event, because we already did our async request above, and waited for it to resolve
-      form.addEventListener('submit', (submitEvent) => {
-        // This is needed to stop our page from changing to a new URL even though it heard a GET request
-        submitEvent.preventDefault();
-        currentList = processRestaurants(arrayFromJson.data);
-        // This constant will have the value of your 15-restaurant collection when it processes
-        // const restaurantList = processRestaurants(arrayFromJson.data);
-  
-        // And this function call will perform the "side effect" of injecting the HTML list for you
-        injectHTML(currentList);
-        // By separating the functions, we open the possibility of regenerating the list
-        // without having to retrieve fresh data every time
-        // We also have access to some form values, so we could filter the list based on name
-      });
-    }
 
+    form.addEventListener('input', (event) => {
+      console.log(event.target.value);
+      const newFilterList = filterList(currentList, event.target.value);
+      // console.log(currentList);
+      // console.log(newFilterList);
+      injectHTML(newFilterList);
+    });
+
+    // And here's an eventListener! It's listening for a "submit" button specifically being clicked
+    // this is a synchronous event event, because we already did our async request above, and waited for it to resolve
+    form.addEventListener('submit', (submitEvent) => {
+      // This is needed to stop our page from changing to a new URL even though it heard a GET request
+      submitEvent.preventDefault();
+      currentList = processRestaurants(arrayFromJson.data);
+      // This constant will have the value of your 15-restaurant collection when it processes
+      // const restaurantList = processRestaurants(arrayFromJson.data);
+
+      // And this function call will perform the "side effect" of injecting the HTML list for you
+      injectHTML(currentList);
+
+      // By separating the functions, we open the possibility of regenerating the list
+      // without having to retrieve fresh data every time
+      // We also have access to some form values, so we could filter the list based on name
+    });
+  }
+}
 /*
   This last line actually runs first!
   It's calling the 'mainEvent' function at line 57
